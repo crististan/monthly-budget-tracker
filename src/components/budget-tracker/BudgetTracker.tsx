@@ -1,5 +1,6 @@
 import Button from "../ui/Button";
 import CategorySection from "./CategorySection";
+import PlusIcon from "../icons/PlusIcon";
 
 function BudgetTracker() {
     return (
@@ -8,11 +9,7 @@ function BudgetTracker() {
                 title="Income sources" 
                 button={{ 
                     label: "Add Expense", 
-                    icon: (
-                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="size-4">
-                            <path strokeLinecap="round" strokeLinejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
-                        </svg>
-                    ),
+                    icon: (<PlusIcon size={"4"} />),
                     onClick: () => console.log("Button clicked!") 
                 }} 
             />
@@ -20,9 +17,7 @@ function BudgetTracker() {
                 customStyles="w-full"
                 onClick={() => console.log("Button clicked!")}
             >
-                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="size-6">
-                    <path strokeLinecap="round" strokeLinejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
-                </svg>
+                <PlusIcon size={"6"} />
                 Add Expense
             </Button>
         </div>
