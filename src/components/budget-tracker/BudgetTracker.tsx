@@ -9,7 +9,7 @@ function BudgetTracker() {
                 title="Income sources" 
                 button={{ 
                     label: "Add Expense", 
-                    icon: (<PlusIcon size={"4"} />),
+                    icon: (<PlusIcon size={"icon-size-sm"} />),
                     onClick: () => console.log("Button clicked!") 
                 }} 
             />
@@ -17,7 +17,7 @@ function BudgetTracker() {
                 customStyles="w-full"
                 onClick={() => console.log("Button clicked!")}
             >
-                <PlusIcon size={"6"} />
+                <PlusIcon size={"icon-size-lg"} />
                 Add Expense
             </Button>
         </div>

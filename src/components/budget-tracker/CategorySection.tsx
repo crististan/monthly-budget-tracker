@@ -1,5 +1,6 @@
 import type { JSX } from "react";
 import Button from "../ui/Button";
+import TransactionItem from "./TransactionItem";
 
 type propTypes = {
     title: string
@@ -9,6 +10,11 @@ type propTypes = {
         onClick: () => void 
     }
 }
+
+const incomeSources = [
+    { id: 1, title: "Salary", amount: 5000, date: "2025-09-08" },
+    { id: 2, title: "Salary", amount: 2000, date: "2025-09-08" }
+];
 
 export default function CategorySection({ title, button }: propTypes) {
     return (
@@ -21,6 +27,16 @@ export default function CategorySection({ title, button }: propTypes) {
                         {button.label}
                     </Button>
                 )}
+            </div>
+            <div className="w-full mb-4">
+                {incomeSources.map((source) => (
+                    <TransactionItem 
+                        key={source.id} 
+                        title={source.title} 
+                        amount={source.amount} 
+                        date={source.date} 
+                    />
+                ))}
             </div>
         </div>
     );

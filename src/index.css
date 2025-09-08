@@ -7,6 +7,8 @@
   --clr-neutral-300: #8D8D99;
   --clr-neutral-1000: #0B1215;
 
+  --clr-gray-500: #4F5563;
+
   --clr-blue-500: #139BFD;
   --clr-blue-600: #0a86de;
 
@@ -50,4 +52,19 @@ h1 {
 button:focus,
 button:focus-visible {
   outline: 4px auto -webkit-focus-ring-color;
+}
+
+.icon-size-sm {
+  width: 16px;
+  height: 16px;
+}
+
+.icon-size-md {
+  width: 24px;
+  height: 24px;
+}
+
+.icon-size-lg {
+  width: 32px;
+  height: 32px;
 }
