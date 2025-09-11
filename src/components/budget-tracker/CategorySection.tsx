@@ -4,6 +4,7 @@ import TransactionItem from "./TransactionItem";
 
 type propTypes = {
     title: string
+    transactions: Array<{ id: number, title: string, amount: number, date: string }>
     button?: { 
         label: string,
         icon: JSX.Element,
@@ -11,12 +12,7 @@ type propTypes = {
     }
 }
 
-const incomeSources = [
-    { id: 1, title: "Salary", amount: 5000, date: "2025-09-08" },
-    { id: 2, title: "Salary", amount: 2000, date: "2025-09-08" }
-];
-
-export default function CategorySection({ title, button }: propTypes) {
+export default function CategorySection({ title, transactions, button }: propTypes) {
     return (
         <div>
             <div className="w-full flex justify-between items-center mb-1">
@@ -29,12 +25,12 @@ export default function CategorySection({ title, button }: propTypes) {
                 )}
             </div>
             <div className="w-full mb-4">
-                {incomeSources.map((source) => (
+                {transactions.map((transaction) => (
                     <TransactionItem 
-                        key={source.id} 
-                        title={source.title} 
-                        amount={source.amount} 
-                        date={source.date} 
+                        key={transaction.id} 
+                        title={transaction.title} 
+                        amount={transaction.amount} 
+                        date={transaction.date} 
                     />
                 ))}
             </div>
