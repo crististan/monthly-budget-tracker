@@ -1,4 +1,4 @@
-import type { JSX } from "react";
+import { useState, type JSX } from "react";
 import Button from "../ui/Button";
 import TransactionItem from "./TransactionItem";
 
@@ -25,7 +25,7 @@ export default function CategorySection({ title, transactions, button, removeFn 
                     </Button>
                 )}
             </div>
-            <div className="w-full mb-4">
+            <div className="w-full mb-2">
                 {transactions.map((transaction) => (
                     <TransactionItem 
                         key={transaction.id} 
@@ -37,6 +37,9 @@ export default function CategorySection({ title, transactions, button, removeFn 
                         removeFn={removeFn}
                     />
                 ))}
+            </div>
+            <div className="w-full mb-4 flex">
+                <span className="font-bold ml-auto">Total: {transactions.reduce((total, transaction) => total + transaction.amount, 0)}</span>
             </div>
         </div>
     );
