@@ -56,14 +56,15 @@ export default function BudgetTracker() {
                         e.preventDefault();
 
                         const form = e.currentTarget as HTMLFormElement;
-                        const title = form.elements[0] as HTMLFormElement;
-                        const amount = form.elements[1] as HTMLFormElement;
+                        const formData = new FormData(form);
+                        const title = formData.get('title') as string;
+                        const amount = formData.get('amount') as string;
 
-                        addIncomeSource(title.value, parseFloat(amount.value));
+                        addIncomeSource(title, parseFloat(amount));
                         setShowIncomeSourcesModal(false);
                     }}>
-                        <input type="text" placeholder="Source Title" className="border rounded p-2 mb-2" />
-                        <input type="number" placeholder="Amount" className="border rounded p-2 mb-2" />
+                        <input type="text" name="title" placeholder="Source Title" className="border rounded p-2 mb-2" />
+                        <input type="number" name="amount" placeholder="Amount" className="border rounded p-2 mb-2" />
                         <button type="submit">Add</button>
                     </form>
                 </div>
