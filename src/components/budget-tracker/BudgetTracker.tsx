@@ -5,13 +5,13 @@ import PlusIcon from "../icons/PlusIcon";
 import Modal from "../ui/Modal";
 
 export default function BudgetTracker() {
-    const [incomeSources, setIncomeSources] = useState([
-        { id: 1, title: "Salary", amount: 6500, date: "2025-09-08" }
+    const [incomeSources, setIncomeSources] = useState<{ id: number; title: string; amount: number; type: "income"; date: string; }[]>([
+        { id: 1, title: "Salary", amount: 6500, type: "income", date: "2025-09-08" }
     ]);
 
-    const [expenses, setExpenses] = useState([
-        { id: 1, title: "House construction", amount: 2000, date: "2025-09-08" },
-        { id: 2, title: "ETFs", amount: 500, date: "2025-09-08" }
+    const [expenses, setExpenses] = useState<{ id: number; title: string; amount: number; type: "expense"; date: string; }[]>([
+        { id: 1, title: "House construction", amount: 2000, type: "expense", date: "2025-09-08" },
+        { id: 2, title: "ETFs", amount: 500, type: "expense", date: "2025-09-08" }
     ]);
 
     const [showIncomeSourcesModal, setShowIncomeSourcesModal] = useState(false);
@@ -19,9 +19,21 @@ export default function BudgetTracker() {
     const addIncomeSource = (title: string, amount: number) => {
         setIncomeSources(prevIncomeSources => [
             ...prevIncomeSources,
-            { id: prevIncomeSources.length + 1, title, amount, date: new Date().toISOString().split('T')[0] }
+            { id: prevIncomeSources.length + 1, title, amount, type: "income", date: new Date().toISOString().split('T')[0] }
         ]);
     };
+
+    const removeTransaction = (id: number, type: 'income' | 'expense') => {
+        if (type === 'income') {
+            setIncomeSources(prevIncomeSources => [
+                ...prevIncomeSources.filter((income) => income.id !== id)
+            ]);
+        } else {
+            setExpenses(prevExpense => [
+                ...prevExpense.filter((expense) => expense.id !== id)
+            ])
+        }
+    }
 
     return (
         <div className="w-full max-w-[400px] mx-auto py-4 px-3 border-[1px] border-[var(--clr-neutral-200)] rounded-md">
@@ -31,12 +43,14 @@ export default function BudgetTracker() {
                 button={{ 
                     label: "Add Expense", 
                     icon: (<PlusIcon size={"icon-size-sm"} />),
-                    onClick: () => setShowIncomeSourcesModal(true) 
+                    onClick: () => setShowIncomeSourcesModal(true)
                 }} 
+                removeFn={removeTransaction}
             />
             <CategorySection 
                 title="Expenses"
                 transactions={expenses}
+                removeFn={removeTransaction}
             />
             <Button 
                 customStyles="w-full"

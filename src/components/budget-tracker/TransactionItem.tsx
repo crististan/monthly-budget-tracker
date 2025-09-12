@@ -1,12 +1,15 @@
 import CloseIcon from "../icons/CloseIcon";
 
 type propTypes = {
+    id: number,
     title: string,
     amount: number,
-    date: string
+    type: 'income' | 'expense',
+    date: string,
+    removeFn: (id: number, type: 'income' | 'expense') => void
 }
 
-export default function TransactionItem({ title, amount, date }: propTypes) {
+export default function TransactionItem({ id, title, amount, type, date, removeFn }: propTypes) {
     return (
         <div className="w-full flex justify-between items-start mb-2 p-4 rounded-lg border-[1px] border-[var(--clr-neutral-200)]">
             <div>
@@ -15,7 +18,11 @@ export default function TransactionItem({ title, amount, date }: propTypes) {
             </div>
             <div className="flex items-center gap-2">
                 <div className="text-base font-medium text-[var(--clr-success-700)]">{amount}</div>
-                <button className="cursor-pointer"><CloseIcon size="icon-size-sm" /></button>
+                <button className="cursor-pointer" onClick={() => {
+                    removeFn(id, type);
+                }}>
+                    <CloseIcon size="icon-size-sm" />
+                </button>
             </div>
         </div>
     );
