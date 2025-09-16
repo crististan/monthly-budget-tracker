@@ -1,4 +1,3 @@
-import { useState } from "react";
 import CloseIcon from "../icons/CloseIcon";
 import Tooltip from "../ui/Tooltip";
 
@@ -12,8 +11,6 @@ type propTypes = {
 }
 
 export default function TransactionItem({ id, title, amount, type, date, removeFn }: propTypes) {
-    const [showTooltip, setShowTooltip] = useState(false);
-
     return (
         <div className="w-full flex justify-between items-start mb-2 p-4 rounded-lg border-[1px] border-[var(--clr-neutral-200)]">
             <div>
@@ -22,21 +19,16 @@ export default function TransactionItem({ id, title, amount, type, date, removeF
             </div>
             <div className="flex items-center gap-2">
                 <div className="text-base font-medium text-[var(--clr-success-700)]">{amount}</div>
-                <button 
-                    className="cursor-pointer relative" 
-                    onMouseEnter={() => {
-                        setShowTooltip(true);
-                    }} 
-                    onMouseLeave={() => {
-                        setShowTooltip(false);
-                    }}
-                    onClick={() => {
-                        removeFn(id, type);
-                    }
-                }>
-                    <CloseIcon size="icon-size-sm" />
-                    <Tooltip show={showTooltip} content={`Delete ${type}`} />
-                </button>
+                <Tooltip content={`Delete ${type}`}>
+                    <button 
+                        className="cursor-pointer" 
+                        onClick={() => {
+                            removeFn(id, type);
+                        }
+                    }>
+                        <CloseIcon size="icon-size-sm" />
+                    </button>
+                </Tooltip>
             </div>
         </div>
     );
