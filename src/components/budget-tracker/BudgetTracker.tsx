@@ -3,6 +3,7 @@ import Button from "../ui/Button";
 import CategorySection from "./CategorySection";
 import PlusIcon from "../icons/PlusIcon";
 import Modal from "../ui/Modal";
+import AddTransactionForm from "../forms/AddTransactionForm";
 
 export default function BudgetTracker() {
     const [incomeSources, setIncomeSources] = useState<{ id: number; title: string; amount: number; type: "income"; date: string; }[]>([
@@ -73,23 +74,12 @@ export default function BudgetTracker() {
                 title="Add Income Source" 
                 onClose={() => setShowIncomeSourcesModal(false)}
             >
-
                 <div>
-                    <form onSubmit={(e) => {
-                        e.preventDefault();
-
-                        const form = e.currentTarget as HTMLFormElement;
-                        const formData = new FormData(form);
-                        const title = formData.get('title') as string;
-                        const amount = formData.get('amount') as string;
-
-                        addIncomeSource(title, parseFloat(amount));
-                        setShowIncomeSourcesModal(false);
-                    }}>
-                        <input type="text" name="title" placeholder="Source Title" className="border rounded p-2 mb-2" />
-                        <input type="number" name="amount" placeholder="Amount" className="border rounded p-2 mb-2" />
-                        <button type="submit">Add</button>
-                    </form>
+                    <AddTransactionForm
+                        transactionTitlePlceholder="Income source"
+                        addFn={addIncomeSource}
+                        onClose={() => setShowIncomeSourcesModal(false)}
+                    />
                 </div>
             </Modal>
 
@@ -98,23 +88,12 @@ export default function BudgetTracker() {
                 title="Add Expense" 
                 onClose={() => setShowExpensesModal(false)}
             >
-
                 <div>
-                    <form onSubmit={(e) => {
-                        e.preventDefault();
-
-                        const form = e.currentTarget as HTMLFormElement;
-                        const formData = new FormData(form);
-                        const title = formData.get('title') as string;
-                        const amount = formData.get('amount') as string;
-
-                        addExpense(title, parseFloat(amount));
-                        setShowExpensesModal(false);
-                    }}>
-                        <input type="text" name="title" placeholder="Source Title" className="border rounded p-2 mb-2" />
-                        <input type="number" name="amount" placeholder="Amount" className="border rounded p-2 mb-2" />
-                        <button type="submit">Add</button>
-                    </form>
+                    <AddTransactionForm
+                        transactionTitlePlceholder="Expense"
+                        addFn={addExpense}
+                        onClose={() => setShowExpensesModal(false)}
+                    />
                 </div>
             </Modal>
         </div>
