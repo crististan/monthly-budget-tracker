@@ -23,7 +23,7 @@ export default function AddTransactionForm({ transactionTitlePlceholder, addFn, 
                 <input type="text" name="title" placeholder={transactionTitlePlceholder} className="w-[60%] border rounded p-2 mb-2" />
                 <input type="number" name="amount" placeholder="Amount" className="w-[40%] border rounded p-2 mb-2" />
             </div>
-            <Button type="submit" style="primary" size="medium">Add</Button>
+            <Button type="submit" style="primary" size="medium" customStyles="w-full">Add</Button>
         </form>
     );
 }

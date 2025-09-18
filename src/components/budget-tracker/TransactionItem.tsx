@@ -12,7 +12,7 @@ type propTypes = {
 
 export default function TransactionItem({ id, title, amount, type, date, removeFn }: propTypes) {
     return (
-        <div className="w-full flex justify-between items-start mb-2 p-4 rounded-lg border-[1px] border-[var(--clr-neutral-200)]">
+        <div className="w-full flex justify-between items-start mb-2 p-4 rounded-lg border-[1px] border-[var(--clr-neutral-100)]">
             <div>
                 <h3 className="text-sm font-medium text-[var(--clr-gray-500)]">{title}</h3>
                 <small className="text-[10px] text-[var(--clr-neutral-600)]">{date}</small>

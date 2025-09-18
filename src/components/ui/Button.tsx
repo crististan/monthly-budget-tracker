@@ -6,22 +6,23 @@ type propTypes = {
     customStyles?: string | null,
     style?: "primary" | "secondary" | "tertiary",
     size?: "small" | "medium" | "large",
+    textColor?: "black" | "blue"
     onClick?: () => void
 }
 
-export default function Button({ children, type = "button", customStyles = null, style = "primary", size = "large", onClick }: propTypes) {
-    let cssClasses = "";
+export default function Button({ children, type = "button", customStyles = null, style = "primary", size = "large", textColor = "blue", onClick }: propTypes) {
+    let cssClasses = "px-2 ";
 
     if (customStyles) {
-        cssClasses = customStyles;
+        cssClasses += customStyles;
     }
 
     switch (style) {
         case "secondary":
-            cssClasses += " bg-transparent text-[var(--clr-neutral-1000)] border-[1px] border-[var(--clr-neutral-1000)] hover:text-[var(--clr-blue-500)] hover:border-[var(--clr-blue-500)]";
+            cssClasses += " bg-transparent border-[1px] border-[var(--clr-neutral-1000)] hover:text-[var(--clr-blue-500)] hover:border-[var(--clr-blue-500)]";
             break;
         case "tertiary":
-            cssClasses += " bg-transparent text-[var(--clr-blue-500)] border-none hover:text-[var(--clr-neutral-1000)]";
+            cssClasses += " bg-transparent border-none hover:text-[var(--clr-neutral-1000)]";
             break;
         default:
             cssClasses += " bg-[var(--clr-neutral-1000)] text-[var(--clr-neutral-0)] border-[1px] border-[var(--clr-neutral-1000)] hover:bg-[var(--clr-blue-500)] hover:border-[var(--clr-blue-500)]";
@@ -37,6 +38,15 @@ export default function Button({ children, type = "button", customStyles = null,
             break;
         default:
             cssClasses += " text-base gap-3 px-10 py-4";
+            break;
+    }
+
+    switch (textColor) {
+        case "black":
+            cssClasses += " text-[var(--clr-neutral-1000)]";
+            break;
+        default:
+            cssClasses += " text-[var(--clr-blue-500)]";
             break;
     }
 
